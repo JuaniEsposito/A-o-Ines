@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Inés ❤️</title>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --secondary: #ff85a1;
+            --bg: #fff0f3;
+            --text: #590d22;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .section {
+            min-height: 60vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 15px;
+            box-sizing: border-box;
+            text-align: center;
+        }
+
+        h1 { font-size: 3rem; margin-bottom: 20px; color: var(--primary); }
+        p { font-size: 1.2rem; max-width: 600px; line-height: 1.6; }
+
+        .trivia-card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            width: 90%;
+            max-width: 500px;
+            margin-top: 20px;
+        }
+
+        .options {
+            display: grid;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 15px;
+            border: 2px solid var(--secondary);
+            border-radius: 10px;
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: 0.3s;
+            color: var(--text);
+            font-weight: bold;
+        }
+
+        button:hover { background: var(--secondary); color: white; }
+        .correct { background: #4ade80 !important; color: white !important; border-color: #22c55e !important; }
+        .wrong { background: #fb7185 !important; color: white !important; border-color: #e11d48 !important; }
+
+        /* Ticket de regalo */
+        #ticket-container {
+            margin-top: 50px;
+            display: none;
+        }
+
+        .ticket {
+            width: 300px;
+            height: 150px;
+            background: linear-gradient(135deg, #ff4d6d, #c9184a);
+            border-radius: 15px;
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            border: 4px dashed white;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            overflow: hidden;
+        }
+
+        .ticket-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #adb5bd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-weight: bold;
+            transition: opacity 0.3s;
+        }
+
+        .ticket-content {
+            padding: 20px;
+            font-size: 1.1rem;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .hidden { display: none; }
+        
+        .photo-placeholder {
+            width: 200px;
+            height: 200px;
+            background: #ddd;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        /* Confeti animation */
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: #ff4d6d;
+            position: absolute;
+            animation: confetti-fall 3s linear forwards;
+        }
+
+        @keyframes confetti-fall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <div class="section">
+        <h1>¡Feliz Cumpleaños, Inés! ❤️</h1>
+        <p>Para mi pequeña langosta 🦞. <br> Tenés que superar una trivia para desbloquear tu regalo.</p>
+        <img src="https://i.ibb.co/8FghCB9/Ines-y-yo.jpg" alt="Inés y yo" class="photo-placeholder">
+        <p><em>Como diría Barney...</em></p>
+        <img src="https://media.giphy.com/media/fSYYG9MSibrmPSuIJ0/giphy.gif" alt="Legendary GIF" style="width: 60%; max-width: 250px; border-radius: 10px; margin: 10px 0;">
+        <p><em>(Hacé scroll hacia abajo para empezar)</em></p>
+    </div>
+
+    <div class="section">
+        <h2 style="font-size: 2.5rem; margin-bottom: 15px;">Nuestros mejores momentos 📸</h2>
+        <p style="font-size: 1.4rem; margin-bottom: 25px; max-width: 700px;">Un resumen de lo bien que la pasamos juntos...</p>
+        <div style="display: flex; gap: 20px; margin-top: 25px; flex-wrap: wrap; justify-content: center;">
+            <img src="https://i.ibb.co/LzNTmbbv/foto-1.jpg" alt="Nosotros" style="width: 250px; height: 250px; object-fit: cover; border-radius: 30px; border: 10px solid var(--secondary); box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+            <img src="https://i.ibb.co/rG3ny7vQ/foto-2.jpg" alt="Nosotros" style="width: 250px; height: 250px; object-fit: cover; border-radius: 30px; border: 10px solid var(--secondary); box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+            <img src="https://i.ibb.co/svQXPSsg/foto-3.jpg" alt="Nosotros" style="width: 250px; height: 250px; object-fit: cover; border-radius: 30px; border: 10px solid var(--secondary); box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+            <img src="https://i.ibb.co/Z3wmbg7/foto-4.jpg" alt="Nosotros" style="width: 250px; height: 250px; object-fit: cover; border-radius: 30px; border: 10px solid var(--secondary); box-shadow: 0 15px 30px rgba(0,0,0,0.2);">
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Falta cada vez menos ⏳</h2>
+        <p>Contando los días para volver a vernos:</p>
+        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-top: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" id="countdown">
+            Cargando...
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestra Próxima Cita 🎲</h2>
+        <p>Apretá el botón para que el destino decida qué vamos a hacer apenas nos veamos.</p>
+        
+        <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 90%; max-width: 400px;">
+            <div id="cita-resultado" style="font-size: 1.3rem; font-weight: bold; color: var(--primary); min-height: 80px; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--secondary); border-radius: 10px; padding: 15px;">
+                ¿Qué nos depara el destino?
+            </div>
+            <button onclick="girarRuleta()" id="btn-ruleta" style="margin-top: 20px; background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Girar Ruleta</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="trivia-card">
+            <h3>1. ¿Cuál fue nuestro primer viaje juntos? ✈️</h3>
+            <p><em>¡Challenge accepted! 📺</em></p>
+            <img src="https://media.giphy.com/media/AWv3UAFkgz39u/giphy.gif" alt="Challenge Accepted GIF" style="width: 80%; max-width: 300px; border-radius: 10px; margin: 15px 0;">
+            <p style="font-style: italic; color: var(--secondary);">¡Challenge accepted!</p>
+            <div class="options">
+                <button onclick="check(this, false)">Málaga</button>
+                <button onclick="check(this, true)">Turquía</button>
+                <button onclick="check(this, false)">Suiza</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="trivia-card">
+            <h3>2. ¿Qué día de mayo cumplimos años? 🎂</h3>
+            <p><em>¡Red John no podría adivinarlo tan fácil! 🔍</em></p>
+            <img src="https://media.giphy.com/media/83vBarohXpmmc/giphy.gif" alt="The Mentalist GIF" style="width: 80%; max-width: 300px; border-radius: 10px; margin: 15px 0;">
+            <div class="options">
+                <button onclick="check(this, false)">25</button>
+                <button onclick="check(this, false)">26</button>
+                <button onclick="check(this, true)">27</button>
+                <button onclick="check(this, false)">28</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <div class="trivia-card">
+            <h3>3. ¿Quién es más pequeño/a? 🐣</h3>
+            <p><em>¡Tan elegante como Neal Caffey! 🎩</em></p>
+            <img src="https://media.giphy.com/media/8aQWk6KQ357Ve/giphy.gif" alt="White Collar GIF" style="width: 80%; max-width: 300px; border-radius: 10px; margin: 15px 0;">
+            <div class="options">
+                <button onclick="check(this, true)">Mami</button>
+                <button onclick="check(this, false)">Papi</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestras Métricas 📊</h2>
+        <p>Los números de nuestro equipo no mienten:</p>
+        
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 30px; width: 100%; max-width: 500px;">
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid #fecdd3;">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;">10,000+</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Kilómetros que nos separan (y no importan)</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid #fecdd3;">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;">∞</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Horas de videollamadas</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid #fecdd3;">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;">5</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Horas de diferencia horaria vencidas</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid #fecdd3;">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;">1</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Objetivo: Estar en el mismo continente</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Cartas para vos 💌</h2>
+        <p>Hacé click en el sobre que necesites abrir hoy:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px; width: 100%; max-width: 400px;">
+            <button onclick="alert('¡Feliz cumple, mi amor! Pasala increíble hoy, comé rico y disfrutá mucho. Te extraño un montón.')" style="background: white; border: 2px solid var(--secondary); padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; color: var(--text);">
+                ✉️ Abrir por tu cumpleaños
+            </button>
+            <button onclick="alert('Acordate que falta muy poco para que estemos juntos de nuevo. Cerrá los ojos que te mando un abrazo gigante desde acá.')" style="background: white; border: 2px solid var(--secondary); padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; color: var(--text);">
+                ✉️ Abrir cuando me extrañes
+            </button>
+            <button onclick="alert('¡Sos una genia y podés con todo! Te admiro un montón, nunca te olvides de eso.')" style="background: white; border: 2px solid var(--secondary); padding: 15px; border-radius: 10px; cursor: pointer; font-weight: bold; color: var(--text);">
+                ✉️ Abrir cuando necesites un empujón
+            </button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Lo que se viene... 🗺️</h2>
+        <p>Nuestro plan maestro para los próximos meses:</p>
+        
+        <div style="text-align: left; background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.05); margin-top: 20px; max-width: 500px; width: 90%;">
+            <div style="border-left: 4px solid var(--primary); padding-left: 20px; margin-bottom: 20px;">
+                <h4 style="color: var(--primary); margin: 0 0 5px 0;">📍 Parada 1: El Regalo</h4>
+                <p style="margin: 0; font-size: 0.9rem;">Ese vuelo misterioso que acabás de raspar en el ticket.</p>
+            </div>
+            <div style="border-left: 4px solid var(--primary); padding-left: 20px; margin-bottom: 20px;">
+                <h4 style="color: var(--primary); margin: 0 0 5px 0;">📍 Parada 2: El Reencuentro</h4>
+                <p style="margin: 0; font-size: 0.9rem;">Abrazos, ponernos al día y pasear juntos.</p>
+            </div>
+            <div style="border-left: 4px solid #cbd5e1; padding-left: 20px;">
+                <h4 style="color: #64748b; margin: 0 0 5px 0;">⏳ Destino Final: Europa</h4>
+                <p style="margin: 0; font-size: 0.9rem; color: #64748b;">Instalarnos por fin en el mismo uso horario. ¡Se viene!</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Pedí un deseo 🎂</h2>
+        <p>Cerrá los ojos, pensá muy fuerte lo que querés para este año, y tocá la velita para apagarla:</p>
+        
+        <div style="font-size: 5rem; cursor: pointer; user-select: none; margin-top: 20px; transition: 0.3s; transform: scale(1.2);" id="vela" onclick="apagarVela()">
+            🕯️
+        </div>
+        
+        <p id="mensaje-deseo" style="display: none; color: var(--primary); font-weight: bold; margin-top: 20px; font-size: 1.5rem; animation: fadeIn 1s;">
+            ¡Ojalá se cumpla! ✨<br>
+            <span style="font-size: 1rem; color: var(--text); font-weight: normal;">(Y si tu deseo era verme, revisá el ticket de abajo 😉)</span>
+        </p>
+    </div>
+
+    <div class="section">
+        <h2>Siempre en sintonía 🌍</h2>
+        <p>Distintos continentes, el mismo equipo.</p>
+        
+        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 200px;">
+                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
+                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Papi</p>
+            </div>
+            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 200px;">
+                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
+                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Mami</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Mini Vales Extras 🎟️</h2>
+        <p>Porque un solo regalo no es suficiente. Guardalos bien para cuando nos veamos:</p>
+        
+        <div style="display: flex; flex-direction: column; gap: 15px; margin-top: 20px; width: 100%; max-width: 400px;">
+            <div style="background: #fff; border-left: 8px solid var(--primary); padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
+                <strong style="color: var(--primary);">🎫 Vale por:</strong> Una cena cocinada 100% por mí (prometo no quemar nada).
+            </div>
+            <div style="background: #fff; border-left: 8px solid var(--secondary); padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
+                <strong style="color: var(--secondary);">🎫 Vale por:</strong> Un masaje de pies después de un día largo de caminar.
+            </div>
+            <div style="background: #fff; border-left: 8px solid #fb7185; padding: 15px 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: left;">
+                <strong style="color: #fb7185;">🎫 Vale por:</strong> Tener la razón automáticamente en nuestra próxima discusión tonta.
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Términos y Condiciones 📝</h2>
+        <p>Por favor, confirmá la renovación de tu contrato para tu nuevo año de vida.</p>
+        
+        <div style="background: white; padding: 25px; border-radius: 15px; margin-top: 20px; max-width: 400px; text-align: left; box-shadow: 0 5px 15px rgba(0,0,0,0.05); border: 2px solid var(--secondary);">
+            <label style="display: flex; gap: 15px; align-items: flex-start; cursor: pointer;">
+                <input type="checkbox" id="acepto" style="margin-top: 5px; transform: scale(1.5);">
+                <span style="font-size: 1.1rem;">Acepto seguir siendo la mami más linda, recibir a mi novio pronto en Europa y dejarme consentir muchísimo hoy en mi cumpleaños.</span>
+            </label>
+            <button onclick="firmarContrato()" style="margin-top: 25px; width: 100%; padding: 15px; border: none; border-radius: 10px; background: var(--primary); color: white; font-weight: bold; cursor: pointer; font-size: 1.1rem; transition: 0.3s;">Firmar Renovación</button>
+        </div>
+    </div>
+
+    <div class="section" id="final-section">
+        <h2>¡Prueba superada! 🥳</h2>
+        <p>Hacé click 5 veces en el ticket para "rascarlo" y ver tu regalo:</p>
+        <p><em>¡Como en Narcos, hay que buscar el tesoro escondido! 💰</em></p>
+        <div style="font-size: 3rem; margin: 15px 0;">💰</div>
+        <p style="font-style: italic; color: var(--secondary);">¡Como en Narcos, hay que buscar el tesoro!</p>
+        <img src="https://media.giphy.com/media/orvlFjcA4paKY/giphy.gif" alt="Narcos GIF" style="width: 80%; max-width: 300px; border-radius: 10px; margin: 15px 0;">
+        
+        <div class="ticket" onclick="scratch()">
+            <div class="ticket-overlay" id="overlay">Hacé click 5 veces...</div>
+            <div class="ticket-content">
+                ✨ ¡Un vuelo del objeto para visitar al coso! ✨
+            </div>
+        </div>
+        
+        <p id="counter" style="margin-top: 15px; font-weight: bold;">Clicks: 0/5</p>
+    </div>
+
+    <script>
+        // Lógica de la trivia
+        function check(btn, isCorrect) {
+            const parent = btn.parentElement;
+            const buttons = parent.querySelectorAll('button');
+            buttons.forEach(b => b.disabled = true);
+            
+            if (isCorrect) {
+                btn.classList.add('correct');
+                createConfetti();
+            } else {
+                btn.classList.add('wrong');
+                // Buscamos el correcto para marcarlo de todas formas
+                buttons.forEach(b => {
+                    if (b.innerText === 'Turquía' || b.innerText === '27' || b.innerText === 'Mami') b.classList.add('correct');
+                });
+            }
+        }
+
+        // Función para crear confetis
+        function createConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#ff4d6d', '#ff85a1', '#4ade80', '#fbbf24', '#60a5fa', '#c084fc'];
+            
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    container.appendChild(confetti);
+                    
+                    // Eliminar el confeti después de la animación
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 4000);
+                }, i * 30);
+            }
+        }
+
+        // Lógica del raspadito
+        let clicks = 0;
+        function scratch() {
+            if (clicks < 5) {
+                clicks++;
+                document.getElementById('counter').innerText = `Clicks: ${clicks}/5`;
+                document.getElementById('overlay').style.opacity = 1 - (clicks * 0.2);
+                
+                if (clicks === 5) {
+                    document.getElementById('overlay').classList.add('hidden');
+                    document.getElementById('counter').innerText = "¡SORPRESA! ✈️❤️";
+                }
+            }
+        }
+
+        // Función para girar la ruleta de citas
+        const citas = [
+            "Ir a tomar un cafecito y hablar por horas ☕",
+            "Cena romántica y vinito 🍷",
+            "Quedarnos abrazados en el sillón sin hacer nada 🛋️",
+            "Salir a caminar sin rumbo por la ciudad 🚶‍♀️🚶‍♂️",
+            "Pedir delivery y maratón de películas 🍕🎬",
+            "Ir a probar ese restaurante que tenemos pendiente 🍝"
+        ];
+        
+        function girarRuleta() {
+            const btn = document.getElementById('btn-ruleta');
+            const resultado = document.getElementById('cita-resultado');
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            
+            let tiempo = 0;
+            const intervalo = setInterval(() => {
+                const random = Math.floor(Math.random() * citas.length);
+                resultado.innerText = citas[random];
+                tiempo += 100;
+                
+                if (tiempo > 2000) {
+                    clearInterval(intervalo);
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    resultado.innerHTML = "✨ " + citas[Math.floor(Math.random() * citas.length)] + " ✨";
+                }
+            }, 100);
+        }
+
+        // Función para firmar el contrato
+        function firmarContrato() {
+            const checkbox = document.getElementById('acepto');
+            if(checkbox.checked) {
+                alert('¡Contrato renovado con éxito! Preparate para el mejor año, te amo. ❤️');
+            } else {
+                alert('Epa... tenés que marcar la casilla para poder seguir siendo mi novia 😉');
+            }
+        }
+
+        // Función para apagar la vela
+        function apagarVela() {
+            const vela = document.getElementById('vela');
+            if (vela.innerText === '🕯️') {
+                vela.innerText = '💨🎂';
+                document.getElementById('mensaje-deseo').style.display = 'block';
+            }
+        }
+
+        // Cuenta regresiva para el reencuentro
+        // Poné acá la fecha del vuelo o del reencuentro (Año, Mes - 1, Día)
+        // Ejemplo: 15 de Agosto de 2026 -> (2026, 7, 15)
+        const reencuentro = new Date(2026, 7, 15).getTime();
+
+        setInterval(function() {
+            const ahora = new Date().getTime();
+            const distancia = reencuentro - ahora;
+
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            document.getElementById("countdown").innerHTML = dias + " días ❤️";
+        }, 1000);
+    </script>
+</body>
+</html>
