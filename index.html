@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Para Inés ❤️</title>
+    <title>Feliz Cumpleaños, Inés</title>
+    
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    
     <style>
         :root {
             --primary: #ff4d6d;
@@ -154,6 +158,48 @@
             pointer-events: none;
             z-index: 9999;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.1); }
+            50% { transform: scale(1); }
+            75% { transform: scale(1.1); }
+        }
+
+        .pulse-animation {
+            animation: pulse 0.5s ease-in-out;
+        }
+
+        .heartbeat-animation {
+            animation: heartbeat 1s ease-in-out infinite;
+        }
+
+        #amor-card:hover {
+            transform: scale(1.05);
+        }
+
+        #amor-card:active {
+            transform: scale(0.95);
+        }
+
+        #map {
+            height: 400px;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -188,6 +234,29 @@
     </div>
 
     <div class="section">
+        <h2>Nuestro Aniversario 💕</h2>
+        <p>Desde el 27 de mayo, juntos para siempre:</p>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; max-width: 500px;">
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--secondary);">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;" id="anios">0</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Años</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--secondary);">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;" id="meses">0</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Meses</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--secondary);">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;" id="dias">0</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Días</p>
+            </div>
+            <div style="background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); text-align: center; border: 2px solid var(--secondary);">
+                <h3 style="color: var(--primary); font-size: 2rem; margin: 0;" id="horas">0</h3>
+                <p style="font-size: 0.9rem; margin-top: 5px;">Horas</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
         <h2>Nuestra Próxima Cita 🎲</h2>
         <p>Apretá el botón para que el destino decida qué vamos a hacer apenas nos veamos.</p>
         
@@ -196,6 +265,18 @@
                 ¿Qué nos depara el destino?
             </div>
             <button onclick="girarRuleta()" id="btn-ruleta" style="margin-top: 20px; background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Girar Ruleta</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestro Próximo Viaje ✈️</h2>
+        <p>Apretá el botón para que el destino elija nuestro próxima aventura juntos.</p>
+        
+        <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 90%; max-width: 400px;">
+            <div id="viaje-resultado" style="font-size: 1.3rem; font-weight: bold; color: var(--primary); min-height: 80px; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--secondary); border-radius: 10px; padding: 15px;">
+                ¿A dónde nos llevará el destino?
+            </div>
+            <button onclick="girarRuletaViaje()" id="btn-ruleta-viaje" style="margin-top: 20px; background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Girar Ruleta</button>
         </div>
     </div>
 
@@ -327,6 +408,76 @@
                 <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
                 <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Mami</p>
             </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestros Relojes ⏰</h2>
+        <p>Siempre conectados, aunque estemos en horarios diferentes.</p>
+        
+        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 220px; text-align: center;">
+                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
+                <p id="reloj-argentina" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Papi</p>
+            </div>
+            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 220px; text-align: center;">
+                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
+                <p id="reloj-espana" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Mami</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Por qué te amo 💕</h2>
+        <p>Hacé click para descubrir un motivo más por el que te amo:</p>
+        
+        <div style="background: white; padding: 40px; border-radius: 20px; margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 500px; cursor: pointer; transition: transform 0.3s;" id="amor-card" onclick="mostrarAmor()">
+            <p id="amor-texto" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); text-align: center; margin: 0;">
+                💌 Tocá para descubrir
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Generador de Cartas de Amor 💌</h2>
+        <p>Creá una carta única combinando frases románticas:</p>
+        
+        <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 90%; max-width: 500px;">
+            <div id="carta-generada" style="font-size: 1.2rem; line-height: 1.8; color: var(--text); min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--secondary); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                Tu carta aparecerá aquí...
+            </div>
+            <button onclick="generarCarta()" style="background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Generar Carta</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Abrazo Virtual 🤗</h2>
+        <p>Cuando no puedo estar ahí, te mando un abrazo digital:</p>
+        
+        <div style="margin-top: 30px;">
+            <button onclick="enviarAbrazo()" id="btn-abrazo" style="font-size: 4rem; background: none; border: none; cursor: pointer; transition: transform 0.3s; padding: 20px;">
+                🤗
+            </button>
+            <p id="abrazo-mensaje" style="display: none; color: var(--primary); font-weight: bold; margin-top: 20px; font-size: 1.3rem; animation: fadeIn 1s;">
+                ¡Te mandé un abrazo gigante! ❤️
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestros Viajes Juntos 🗺️</h2>
+        <p>Todos los lugares maravillosos que hemos visitado:</p>
+        <div id="map"></div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestra Playlist 🎵</h2>
+        <p>Música para escuchar juntos, aunque estemos lejos:</p>
+        
+        <div style="margin-top: 20px; width: 90%; max-width: 600px;">
+            <iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1DZ06evO3drJ2U?utm_source=generator&theme=0" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
         </div>
     </div>
 
@@ -466,6 +617,43 @@
             }, 100);
         }
 
+        // Destinos para la ruleta de viajes
+        const destinos = [
+            "París, Francia 🗼",
+            "Roma, Italia 🏛️",
+            "Tokio, Japón 🌸",
+            "Nueva York, EE.UU. 🗽",
+            "Barcelona, España 🏖️",
+            "Amsterdam, Países Bajos 🚲",
+            "Londres, Reino Unido 🎡",
+            "Berlín, Alemania 🎪",
+            "Praga, República Checa 🌉",
+            "Viena, Austria 🎻",
+            "Lisboa, Portugal 🌊",
+            "Atenas, Grecia 🏺"
+        ];
+        
+        function girarRuletaViaje() {
+            const btn = document.getElementById('btn-ruleta-viaje');
+            const resultado = document.getElementById('viaje-resultado');
+            btn.disabled = true;
+            btn.style.opacity = '0.5';
+            
+            let tiempo = 0;
+            const intervalo = setInterval(() => {
+                const random = Math.floor(Math.random() * destinos.length);
+                resultado.innerText = destinos[random];
+                tiempo += 100;
+                
+                if (tiempo > 2000) {
+                    clearInterval(intervalo);
+                    btn.disabled = false;
+                    btn.style.opacity = '1';
+                    resultado.innerHTML = "✈️ " + destinos[Math.floor(Math.random() * destinos.length)] + " ✈️";
+                }
+            }, 100);
+        }
+
         // Función para firmar el contrato
         function firmarContrato() {
             const checkbox = document.getElementById('acepto');
@@ -497,6 +685,195 @@
             const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
             document.getElementById("countdown").innerHTML = dias + " días ❤️";
         }, 1000);
+
+        // Contador de aniversario (27 de mayo)
+        const aniversario = new Date(2023, 4, 27); // 27 de mayo de 2023 (asumiendo que empezaron en 2023)
+
+        function actualizarAniversario() {
+            const ahora = new Date();
+            const diferencia = ahora - aniversario;
+
+            const anos = Math.floor(diferencia / (1000 * 60 * 60 * 24 * 365.25));
+            const meses = Math.floor((diferencia % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
+            const dias = Math.floor((diferencia % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+
+            document.getElementById('anios').innerText = anos;
+            document.getElementById('meses').innerText = meses;
+            document.getElementById('dias').innerText = dias;
+            document.getElementById('horas').innerText = horas;
+        }
+
+        actualizarAniversario();
+        setInterval(actualizarAniversario, 1000);
+
+        // Reloj dual - Argentina y España
+        function actualizarRelojes() {
+            const ahora = new Date();
+            
+            // Argentina (UTC-3)
+            const argentina = new Date(ahora.toLocaleString("en-US", {timeZone: "America/Argentina/Buenos_Aires"}));
+            const horaArg = argentina.getHours().toString().padStart(2, '0') + ':' + argentina.getMinutes().toString().padStart(2, '0');
+            document.getElementById('reloj-argentina').innerText = horaArg;
+            
+            // España (UTC+1/UTC+2)
+            const espana = new Date(ahora.toLocaleString("en-US", {timeZone: "Europe/Madrid"}));
+            const horaEsp = espana.getHours().toString().padStart(2, '0') + ':' + espana.getMinutes().toString().padStart(2, '0');
+            document.getElementById('reloj-espana').innerText = horaEsp;
+        }
+        
+        actualizarRelojes();
+        setInterval(actualizarRelojes, 1000);
+
+        // "Por qué te amo" - Razones aleatorias
+        const razonesAmor = [
+            "Porque tu risa es mi sonido favorito del mundo 😊",
+            "Porque siempre sabes cómo hacerme sonreír, incluso en los días difíciles 💕",
+            "Porque eres la persona más inteligente que conozco 🧠",
+            "Porque tu bondad no tiene límites ❤️",
+            "Porque me haces querer ser mejor persona cada día ✨",
+            "Porque eres mi mejor amiga y mi amor al mismo tiempo 🥰",
+            "Porque tu cariño es lo más precioso que tengo 💖",
+            "Porque eres increíblemente fuerte y resiliente 💪",
+            "Porque me escuchas como nadie más lo hace 👂",
+            "Porque tus abrazos curan todo 🤗",
+            "Porque eres hermosa por dentro y por fuera 🌹",
+            "Porque me haces sentir el hombre más afortunado del mundo 🍀",
+            "Porque tu pasión por la vida me inspira cada día 🔥",
+            "Porque eres mi hogar, sin importar dónde estemos 🏠",
+            "Porque te amo más de lo que las palabras pueden expresar 💝"
+        ];
+        
+        function mostrarAmor() {
+            const card = document.getElementById('amor-card');
+            const texto = document.getElementById('amor-texto');
+            
+            card.classList.add('pulse-animation');
+            texto.innerText = razonesAmor[Math.floor(Math.random() * razonesAmor.length)];
+            
+            setTimeout(() => {
+                card.classList.remove('pulse-animation');
+            }, 500);
+        }
+
+        // Generador de cartas de amor
+        const frasesInicio = [
+            "Mi amor,",
+            "Querida Inés,",
+            "Para mi pequeña langosta,",
+            "Mi vida,",
+            "Mi tesoro,"
+        ];
+        
+        const frasesMedio = [
+            "cada día que paso sin ti es un día menos para estar juntos.",
+            "tu sonrisa es lo primero que pienso al despertar.",
+            "no hay distancia que pueda separar nuestros corazones.",
+            "eres la razón por la que creo en el amor verdadero.",
+            "mi corazón late más fuerte cuando pienso en ti.",
+            "eres el sueño que nunca supe que tenía hasta que te conocí.",
+            "cada momento a tu lado es un regalo que atesoro.",
+            "tu amor me da fuerzas para superar cualquier obstáculo."
+        ];
+        
+        const frasesFinal = [
+            "Te amo más de lo que imaginas. ❤️",
+            "Eres mi todo. 💕",
+            "No puedo esperar para tenerte en mis brazos. 🤗",
+            "Siempre serás mi persona favorita. ✨",
+            "Gracias por ser mi mejor aventura. 🌟",
+            "Eres el amor de mi vida. 💝",
+            "Contigo, todo es posible. 🌈",
+            "Te amo infinitamente. ∞"
+        ];
+        
+        function generarCarta() {
+            const carta = document.getElementById('carta-generada');
+            const inicio = frasesInicio[Math.floor(Math.random() * frasesInicio.length)];
+            const medio = frasesMedio[Math.floor(Math.random() * frasesMedio.length)];
+            const final = frasesFinal[Math.floor(Math.random() * frasesFinal.length)];
+            
+            carta.innerHTML = `${inicio}<br><br>${medio}<br><br>${final}`;
+            carta.style.animation = 'fadeIn 0.5s ease-in-out';
+        }
+
+        // Abrazo virtual con animación y sonido
+        function enviarAbrazo() {
+            const btn = document.getElementById('btn-abrazo');
+            const mensaje = document.getElementById('abrazo-mensaje');
+            
+            // Animación del botón
+            btn.classList.add('heartbeat-animation');
+            btn.innerText = '❤️';
+            
+            // Mostrar mensaje
+            mensaje.style.display = 'block';
+            
+            // Reproducir sonido de abrazo (usando Web Audio API para un sonido suave)
+            try {
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioContext.createOscillator();
+                const gainNode = audioContext.createGain();
+                
+                oscillator.connect(gainNode);
+                gainNode.connect(audioContext.destination);
+                
+                oscillator.frequency.value = 440; // Nota La
+                oscillator.type = 'sine';
+                
+                gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.5);
+                
+                oscillator.start(audioContext.currentTime);
+                oscillator.stop(audioContext.currentTime + 0.5);
+            } catch (e) {
+                console.log('Audio no soportado');
+            }
+            
+            // Resetear después de 3 segundos
+            setTimeout(() => {
+                btn.classList.remove('heartbeat-animation');
+                btn.innerText = '🤗';
+                mensaje.style.display = 'none';
+            }, 3000);
+        }
+    </script>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Inicializar el mapa
+        const map = L.map('map').setView([40.0, 0.0], 4);
+
+        // Agregar capa del mapa (usando OpenStreetMap)
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        // Coordenadas de las ciudades visitadas
+        const ciudades = [
+            { nombre: "Málaga, España", coords: [36.7213, -4.4214] },
+            { nombre: "Sevilla, España", coords: [37.3891, -5.9845] },
+            { nombre: "Milán, Italia", coords: [45.4642, 9.1900] },
+            { nombre: "Istanbul, Turquía", coords: [41.0082, 28.9784] },
+            { nombre: "Sofia, Bulgaria", coords: [42.6977, 23.3219] },
+            { nombre: "Buenos Aires, Argentina", coords: [-34.6037, -58.3816] },
+            { nombre: "Colonia, Uruguay", coords: [-34.4775, -53.8358] },
+            { nombre: "Wiesbaden, Alemania", coords: [50.0826, 8.2493] },
+            { nombre: "Frankfurt, Alemania", coords: [50.1109, 8.6821] }
+        ];
+
+        // Agregar marcadores para cada ciudad
+        ciudades.forEach(ciudad => {
+            L.marker(ciudad.coords)
+                .addTo(map)
+                .bindPopup(`<b>${ciudad.nombre}</b><br>¡Visitado juntos! ❤️`);
+        });
+
+        // Ajustar el mapa para mostrar todos los marcadores
+        const group = new L.featureGroup(ciudades.map(c => L.marker(c.coords)));
+        map.fitBounds(group.getBounds().pad(0.1));
     </script>
 </body>
 </html>
