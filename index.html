@@ -235,14 +235,6 @@
     </div>
 
     <div class="section">
-        <h2>Falta cada vez menos ⏳</h2>
-        <p>Contando los días para volver a vernos:</p>
-        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-top: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" id="countdown">
-            Cargando...
-        </div>
-    </div>
-
-    <div class="section">
         <h2>Nuestro Aniversario 💕</h2>
         <p>Desde el 27 de mayo, juntos para siempre:</p>
         <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px; width: 100%; max-width: 500px;">
@@ -262,6 +254,85 @@
                 <h3 style="color: var(--primary); font-size: 2rem; margin: 0;" id="horas">0</h3>
                 <p style="font-size: 0.9rem; margin-top: 5px;">Horas</p>
             </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Por qué te amo 💕</h2>
+        <p>Hacé click para descubrir un motivo más por el que te amo:</p>
+        
+        <div style="background: white; padding: 40px; border-radius: 20px; margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 500px; cursor: pointer; transition: transform 0.3s;" id="amor-card" onclick="mostrarAmor()">
+            <p id="amor-texto" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); text-align: center; margin: 0;">
+                💌 Tocá para descubrir
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Generador de Cartas de Amor 💌</h2>
+        <p>Creá una carta única combinando frases románticas:</p>
+        
+        <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 90%; max-width: 500px;">
+            <div id="carta-generada" style="font-size: 1.2rem; line-height: 1.8; color: var(--text); min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--secondary); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
+                Tu carta aparecerá aquí...
+            </div>
+            <button onclick="generarCarta()" style="background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Generar Carta</button>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Abrazo Virtual 🤗</h2>
+        <p>Cuando no puedo estar ahí, te mando un abrazo digital:</p>
+        
+        <div style="margin-top: 30px;">
+            <button onclick="enviarAbrazo()" id="btn-abrazo" style="font-size: 4rem; background: none; border: none; cursor: pointer; transition: transform 0.3s; padding: 20px;">
+                🤗
+            </button>
+            <p id="abrazo-mensaje" style="display: none; color: var(--primary); font-weight: bold; margin-top: 20px; font-size: 1.3rem; animation: fadeIn 1s;">
+                ¡Te mandé un abrazo gigante! ❤️
+            </p>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Siempre en sintonía 🌍</h2>
+        <p>Distintos continentes, el mismo equipo.</p>
+        
+        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 200px;">
+                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
+                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Papi</p>
+            </div>
+            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 200px;">
+                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
+                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Mami</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestros Relojes ⏰</h2>
+        <p>Siempre conectados, aunque estemos en horarios diferentes.</p>
+        
+        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
+            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 220px; text-align: center;">
+                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
+                <p id="reloj-argentina" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Papi</p>
+            </div>
+            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 220px; text-align: center;">
+                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
+                <p id="reloj-espana" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Mami</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Falta cada vez menos ⏳</h2>
+        <p>Contando los días para volver a vernos:</p>
+        <div style="font-size: 2.5rem; font-weight: bold; color: var(--primary); margin-top: 20px; background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);" id="countdown">
+            Cargando...
         </div>
     </div>
 
@@ -287,6 +358,12 @@
             </div>
             <button onclick="girarRuletaViaje()" id="btn-ruleta-viaje" style="margin-top: 20px; background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Girar Ruleta</button>
         </div>
+    </div>
+
+    <div class="section">
+        <h2>Nuestros Viajes Juntos 🗺️</h2>
+        <p>Todos los lugares maravillosos que hemos visitado:</p>
+        <div id="map"></div>
     </div>
 
     <div class="section">
@@ -402,83 +479,6 @@
             ¡Ojalá se cumpla! ✨<br>
             <span style="font-size: 1rem; color: var(--text); font-weight: normal;">(Y si tu deseo era verme, revisá el ticket de abajo 😉)</span>
         </p>
-    </div>
-
-    <div class="section">
-        <h2>Siempre en sintonía 🌍</h2>
-        <p>Distintos continentes, el mismo equipo.</p>
-        
-        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
-            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 200px;">
-                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
-                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Papi</p>
-            </div>
-            <div style="background: white; padding: 20px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 200px;">
-                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
-                <p style="margin: 10px 0 0 0; font-weight: bold; font-size: 1.5rem;">Mami</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Nuestros Relojes ⏰</h2>
-        <p>Siempre conectados, aunque estemos en horarios diferentes.</p>
-        
-        <div style="display: flex; gap: 30px; margin-top: 30px; flex-wrap: wrap; justify-content: center;">
-            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid #cbd5e1; width: 220px; text-align: center;">
-                <h3 style="margin: 0; color: #475569; font-size: 1.2rem;">🇦🇷 Argentina</h3>
-                <p id="reloj-argentina" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
-                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Papi</p>
-            </div>
-            <div style="background: white; padding: 30px 40px; border-radius: 20px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); border: 2px solid var(--secondary); width: 220px; text-align: center;">
-                <h3 style="margin: 0; color: var(--primary); font-size: 1.2rem;">🇪🇸 España</h3>
-                <p id="reloj-espana" style="margin: 15px 0 0 0; font-weight: bold; font-size: 2rem; color: var(--primary);">--:--</p>
-                <p style="margin: 5px 0 0 0; font-size: 0.9rem; color: #64748b;">Hora de Mami</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Por qué te amo 💕</h2>
-        <p>Hacé click para descubrir un motivo más por el que te amo:</p>
-        
-        <div style="background: white; padding: 40px; border-radius: 20px; margin-top: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); width: 90%; max-width: 500px; cursor: pointer; transition: transform 0.3s;" id="amor-card" onclick="mostrarAmor()">
-            <p id="amor-texto" style="font-size: 1.4rem; font-weight: bold; color: var(--primary); text-align: center; margin: 0;">
-                💌 Tocá para descubrir
-            </p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Generador de Cartas de Amor 💌</h2>
-        <p>Creá una carta única combinando frases románticas:</p>
-        
-        <div style="background: white; padding: 30px; border-radius: 15px; margin-top: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); width: 90%; max-width: 500px;">
-            <div id="carta-generada" style="font-size: 1.2rem; line-height: 1.8; color: var(--text); min-height: 150px; display: flex; align-items: center; justify-content: center; text-align: center; border: 2px dashed var(--secondary); border-radius: 10px; padding: 20px; margin-bottom: 20px;">
-                Tu carta aparecerá aquí...
-            </div>
-            <button onclick="generarCarta()" style="background: var(--primary); color: white; border: none; padding: 15px 30px; border-radius: 25px; font-size: 1.2rem; cursor: pointer; width: 100%; font-weight: bold;">Generar Carta</button>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Abrazo Virtual 🤗</h2>
-        <p>Cuando no puedo estar ahí, te mando un abrazo digital:</p>
-        
-        <div style="margin-top: 30px;">
-            <button onclick="enviarAbrazo()" id="btn-abrazo" style="font-size: 4rem; background: none; border: none; cursor: pointer; transition: transform 0.3s; padding: 20px;">
-                🤗
-            </button>
-            <p id="abrazo-mensaje" style="display: none; color: var(--primary); font-weight: bold; margin-top: 20px; font-size: 1.3rem; animation: fadeIn 1s;">
-                ¡Te mandé un abrazo gigante! ❤️
-            </p>
-        </div>
-    </div>
-
-    <div class="section">
-        <h2>Nuestros Viajes Juntos 🗺️</h2>
-        <p>Todos los lugares maravillosos que hemos visitado:</p>
-        <div id="map"></div>
     </div>
 
     <div class="section">
